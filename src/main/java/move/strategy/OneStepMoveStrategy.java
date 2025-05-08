@@ -18,6 +18,7 @@ public class OneStepMoveStrategy implements MoveStrategy {
         int randomNumber=randomGenerator.generate();
         if(moveDecider.canMove(randomNumber)){
             return STEP_SIZE;
-        }else return 0;
+        }
+        return 0;
     }
 }
