@@ -1,10 +1,23 @@
 package move.strategy;
 
+import generator.random.RandomGenerator;
+import move.decider.MoveDecider;
+
 public class OneStepMoveStrategy implements MoveStrategy {
     private static final int STEP_SIZE = 1;
 
+    private final RandomGenerator randomGenerator;
+    private final MoveDecider moveDecider;
+
+    public OneStepMoveStrategy(RandomGenerator randomGenerator, MoveDecider moveDecider) {
+        this.randomGenerator = randomGenerator;
+        this.moveDecider = moveDecider;
+    }
     @Override
     public int addStepSize(){
-        return STEP_SIZE;
+        int randomNumber=randomGenerator.generate();
+        if(moveDecider.canMove(randomNumber)){
+            return STEP_SIZE;
+        }else return 0;
     }
 }
