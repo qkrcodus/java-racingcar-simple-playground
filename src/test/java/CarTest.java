@@ -28,6 +28,7 @@ public class CarTest {
 
         // then
         assertThat(car.getMovedDistance()).isEqualTo(1);
+        assertThat(car.getName()).isEqualTo("car1");
     }
 
 
@@ -43,6 +44,7 @@ public class CarTest {
         car.move();
 
         assertThat(car.getMovedDistance()).isEqualTo(0);
+        assertThat(car.getName()).isEqualTo("car2");
     }
 
     @DisplayName("자동차는 여러 번 움직일 경우 이동 거리가 누적된다")
@@ -59,5 +61,6 @@ public class CarTest {
         car.move();
 
         assertThat(car.getMovedDistance()).isEqualTo(3);
+        assertThat(car.getName()).isEqualTo("car3");
     }
 }
