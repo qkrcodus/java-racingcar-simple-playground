@@ -1,4 +1,4 @@
-package move.evalutaor;
+package move.evaluator;
 
 public class GreaterThanOrEqualThreshold implements ThresholdEvaluator {
     private final int threshold;

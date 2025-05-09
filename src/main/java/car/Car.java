@@ -5,6 +5,7 @@ import move.strategy.MoveStrategy;
 public class Car {
     private final String name;
     private int movedDistance=0;
+
     private final MoveStrategy moveStrategy;
 
     public Car(String name,MoveStrategy moveStrategy) {

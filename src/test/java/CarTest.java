@@ -1,6 +1,9 @@
 import car.Car;
 import generator.random.RandomGenerator;
 import move.decider.MoveDecider;
+import move.decider.ThresholdBaseMoveDecider;
+import move.evaluator.GreaterThanOrEqualThreshold;
+import move.evaluator.ThresholdEvaluator;
 import move.strategy.MoveStrategy;
 import move.strategy.OneStepMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
@@ -14,9 +17,10 @@ public class CarTest {
     @Test
     void 움직일_수_있을_때_1칸_전진() {
         // given
-        RandomGenerator fixedGenerator = () -> 7; // 7을 반환
-        MoveDecider alwaysTrueDecider = (number) -> true; // 항상 움직임
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, alwaysTrueDecider);
+        RandomGenerator fixedGenerator = () -> 7;
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
+        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car1", strategy);
 
         // when
@@ -31,8 +35,9 @@ public class CarTest {
     @Test
     void 움직일_수_없을_때_전진_하지_않음() {
         RandomGenerator fixedGenerator = () -> 2;
-        MoveDecider alwaysFalseDecider = (number) -> false;
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, alwaysFalseDecider);
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
+        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car2", strategy);
 
         car.move();
@@ -44,8 +49,9 @@ public class CarTest {
     @Test
     void 여러번_움직이면_누적됨() {
         RandomGenerator fixedGenerator = () -> 8;
-        MoveDecider alwaysTrueDecider = (number) -> true;
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, alwaysTrueDecider);
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
+        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car3", strategy);
 
         car.move();

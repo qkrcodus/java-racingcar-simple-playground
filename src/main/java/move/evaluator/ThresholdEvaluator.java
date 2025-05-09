@@ -1,4 +1,4 @@
-package move.evalutaor;
+package move.evaluator;
 
 public interface ThresholdEvaluator {
     boolean isSatisfied(int value);

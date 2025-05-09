@@ -1,6 +1,6 @@
 package move.decider;
 
-import move.evalutaor.ThresholdEvaluator;
+import move.evaluator.ThresholdEvaluator;
 
 public class ThresholdBaseMoveDecider implements MoveDecider {
     private final ThresholdEvaluator evaluator;
