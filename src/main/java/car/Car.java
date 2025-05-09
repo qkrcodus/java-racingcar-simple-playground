@@ -1,6 +1,6 @@
 package car;
 
-import move.strategy.MoveStrategy;
+import car.move.strategy.MoveStrategy;
 
 public class Car {
     private final String name;

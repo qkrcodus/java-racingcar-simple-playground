@@ -1,7 +1,7 @@
-package move.strategy;
+package car.move.strategy;
 
-import generator.random.RandomGenerator;
-import move.decider.MoveDecider;
+import car.generator.random.RandomGenerator;
+import car.move.decider.MoveDecider;
 
 public class OneStepMoveStrategy implements MoveStrategy {
     private static final int STEP_SIZE = 1;

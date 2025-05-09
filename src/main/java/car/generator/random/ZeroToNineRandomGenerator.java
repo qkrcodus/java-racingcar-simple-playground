@@ -1,4 +1,4 @@
-package generator.random;
+package car.generator.random;
 import java.util.Random;
 
 public class ZeroToNineRandomGenerator implements RandomGenerator {

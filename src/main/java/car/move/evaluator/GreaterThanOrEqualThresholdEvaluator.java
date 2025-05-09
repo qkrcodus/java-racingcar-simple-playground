@@ -1,9 +1,9 @@
-package move.evaluator;
+package car.move.evaluator;
 
-public class GreaterThanOrEqualThreshold implements ThresholdEvaluator {
+public class GreaterThanOrEqualThresholdEvaluator implements ThresholdEvaluator {
     private final int threshold;
 
-    public GreaterThanOrEqualThreshold(int threshold) {
+    public GreaterThanOrEqualThresholdEvaluator(int threshold) {
         this.threshold = threshold;
     }
     @Override

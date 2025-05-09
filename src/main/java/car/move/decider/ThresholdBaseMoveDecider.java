@@ -1,6 +1,6 @@
-package move.decider;
+package car.move.decider;
 
-import move.evaluator.ThresholdEvaluator;
+import car.move.evaluator.ThresholdEvaluator;
 
 public class ThresholdBaseMoveDecider implements MoveDecider {
     private final ThresholdEvaluator evaluator;

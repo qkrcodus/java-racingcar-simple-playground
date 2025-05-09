@@ -1,11 +1,11 @@
 import car.Car;
-import generator.random.RandomGenerator;
-import move.decider.MoveDecider;
-import move.decider.ThresholdBaseMoveDecider;
-import move.evaluator.GreaterThanOrEqualThreshold;
-import move.evaluator.ThresholdEvaluator;
-import move.strategy.MoveStrategy;
-import move.strategy.OneStepMoveStrategy;
+import car.generator.random.RandomGenerator;
+import car.move.decider.MoveDecider;
+import car.move.decider.ThresholdBaseMoveDecider;
+import car.move.evaluator.GreaterThanOrEqualThresholdEvaluator;
+import car.move.evaluator.ThresholdEvaluator;
+import car.move.strategy.MoveStrategy;
+import car.move.strategy.OneStepMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class CarTest {
     void 움직일_수_있을_때_1칸_전진() {
         // given
         RandomGenerator fixedGenerator = () -> 7;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
         MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
         MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car1", strategy);
@@ -36,7 +36,7 @@ public class CarTest {
     @Test
     void 움직일_수_없을_때_전진_하지_않음() {
         RandomGenerator fixedGenerator = () -> 2;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
         MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
         MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car2", strategy);
@@ -51,7 +51,7 @@ public class CarTest {
     @Test
     void 여러번_움직이면_누적됨() {
         RandomGenerator fixedGenerator = () -> 8;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThreshold(4);
+        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
         MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
         MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
         Car car = new Car("car3", strategy);
