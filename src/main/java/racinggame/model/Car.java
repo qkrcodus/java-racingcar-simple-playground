@@ -1,6 +1,6 @@
-package car;
+package racinggame.model;
 
-import car.move.strategy.MoveStrategy;
+import racinggame.policy.strategy.MoveStrategy;
 
 public class Car {
     private final String name;

@@ -1,4 +1,4 @@
-package car.generator.random;
+package racinggame.policy.numbergenerator;
 import java.util.Random;
 
 public class ZeroToNineRandomGenerator implements RandomGenerator {

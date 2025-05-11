@@ -1,4 +1,4 @@
-package car.generator.random;
+package racinggame.policy.numbergenerator;
 
 public interface RandomGenerator {
     int generate();

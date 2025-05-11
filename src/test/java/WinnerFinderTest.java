@@ -1,8 +1,8 @@
-import car.Car;
-import car.move.strategy.MoveStrategy;
+import racinggame.model.Car;
+import racinggame.policy.strategy.MoveStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racinggame.WinnerFinder;
+import racinggame.model.WinnerFinder;
 
 import java.util.ArrayList;
 import java.util.List;

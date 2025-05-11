@@ -1,4 +1,4 @@
-package car.move.evaluator;
+package racinggame.policy.evaluator;
 
 public class GreaterThanOrEqualThresholdEvaluator implements ThresholdEvaluator {
     private final int threshold;

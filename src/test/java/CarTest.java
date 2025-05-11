@@ -1,11 +1,11 @@
-import car.Car;
-import car.generator.random.RandomGenerator;
-import car.move.decider.MoveDecider;
-import car.move.decider.ThresholdBaseMoveDecider;
-import car.move.evaluator.GreaterThanOrEqualThresholdEvaluator;
-import car.move.evaluator.ThresholdEvaluator;
-import car.move.strategy.MoveStrategy;
-import car.move.strategy.OneStepMoveStrategy;
+import racinggame.model.Car;
+import racinggame.policy.numbergenerator.RandomGenerator;
+import racinggame.policy.decider.MoveDecider;
+import racinggame.policy.decider.ThresholdBaseMoveDecider;
+import racinggame.policy.evaluator.GreaterThanOrEqualThresholdEvaluator;
+import racinggame.policy.evaluator.ThresholdEvaluator;
+import racinggame.policy.strategy.MoveStrategy;
+import racinggame.policy.strategy.OneStepMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

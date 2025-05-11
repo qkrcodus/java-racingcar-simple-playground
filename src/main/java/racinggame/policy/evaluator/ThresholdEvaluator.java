@@ -1,4 +1,4 @@
-package car.move.evaluator;
+package racinggame.policy.evaluator;
 
 public interface ThresholdEvaluator {
     boolean isSatisfied(int value);
