@@ -22,7 +22,7 @@ public class InputView {
         System.out.println("시도할 회수는 몇회인가요?");
         int moveCount = scanner.nextInt();
         if (moveCount <= 0) {
-            throw new IllegalArgumentException("moveCount must be positive");
+            throw new IllegalArgumentException("moveCount는 0보다 큰 값이여야 합니다.");
         }
         return moveCount;
     }

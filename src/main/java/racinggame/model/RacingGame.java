@@ -9,7 +9,11 @@ public class RacingGame {
     private final List<Car> cars;
     private final int moveCount;
 
+
     public RacingGame(List<String> names, int moveCount, MoveStrategy moveStrategy) {
+        if (moveCount <= 0) {
+            throw new IllegalArgumentException("moveCount는 0보다 큰 값이여야 합니다.");
+        }
         this.cars = createCars(names,moveStrategy);
         this.moveCount = moveCount;
     }

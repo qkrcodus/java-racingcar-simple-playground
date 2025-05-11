@@ -10,7 +10,7 @@ import racinggame.view.OutputView;
 
 import java.util.List;
 
-public class RacingController {
+public class RacingGameController {
     public void run(){
         List<String> names= InputView.readCarNames();
         int moveCount = InputView.readMoveCount();
