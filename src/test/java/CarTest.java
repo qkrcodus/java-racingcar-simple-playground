@@ -1,66 +1,60 @@
-import racinggame.model.Car;
-import racinggame.policy.numbergenerator.RandomGenerator;
-import racinggame.policy.decider.MoveDecider;
-import racinggame.policy.decider.ThresholdBaseMoveDecider;
-import racinggame.policy.evaluator.GreaterThanOrEqualThresholdEvaluator;
-import racinggame.policy.evaluator.ThresholdEvaluator;
-import racinggame.policy.strategy.MoveStrategy;
-import racinggame.policy.strategy.OneStepMoveStrategy;
+import racinggame.model.car.Car;
+import racinggame.model.car.policy.numbergenerator.RandomGenerator;
+import racinggame.model.car.policy.decider.MoveDecider;
+import racinggame.model.car.policy.decider.ThresholdBaseMoveDecider;
+import racinggame.model.car.policy.evaluator.GreaterThanOrEqualThresholdEvaluator;
+import racinggame.model.car.policy.evaluator.ThresholdEvaluator;
+import racinggame.model.car.policy.strategy.MoveStrategy;
+import racinggame.model.car.policy.strategy.OneStepMoveStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Objects;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
-    @DisplayName("랜덤값이 조건을 만족할 경우 자동차는 1칸 전진한다")
     @Test
-    void 움직일_수_있을_때_1칸_전진() {
-        // given
-        RandomGenerator fixedGenerator = () -> 7;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
-        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
-        Car car = new Car("car1", strategy);
+    @DisplayName("moveStrategy에 따라 누적 이동 거리가 쌓인다")
+    void moveStrategy_따라_누적되는지_확인한다 () {
+        // give
+        MoveStrategy alwaysOne = () -> 1;
+        Car car = new Car("car1", alwaysOne);
 
         // when
         car.move();
-
-        // then
-        assertThat(car.getMovedDistance()).isEqualTo(1);
-        assertThat(car.getName()).isEqualTo("car1");
-    }
-
-
-    @DisplayName("랜덤값이 조건을 만족하지 않을 경우 자동차는 전진하지 않는다")
-    @Test
-    void 움직일_수_없을_때_전진_하지_않음() {
-        RandomGenerator fixedGenerator = () -> 2;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
-        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
-        Car car = new Car("car2", strategy);
-
         car.move();
 
-        assertThat(car.getMovedDistance()).isEqualTo(0);
+        // then
+        assertThat(car.getMovedDistance()).isEqualTo(2);
         assertThat(car.getName()).isEqualTo("car2");
     }
 
-    @DisplayName("자동차는 여러 번 움직일 경우 이동 거리가 누적된다")
+    @DisplayName("이름을 null로 둔다면 에러를 던지는지 확인한다.")
     @Test
-    void 여러번_움직이면_누적됨() {
-        RandomGenerator fixedGenerator = () -> 8;
-        ThresholdEvaluator evaluator=new GreaterThanOrEqualThresholdEvaluator(4);
-        MoveDecider decider= new ThresholdBaseMoveDecider(evaluator);
-        MoveStrategy strategy = new OneStepMoveStrategy(fixedGenerator, decider);
-        Car car = new Car("car3", strategy);
+    void 이름을_null로_둘_수_없음(){
+        // given
+        MoveStrategy dummystrategy=()->0;
 
-        car.move();
-        car.move();
-        car.move();
-
-        assertThat(car.getMovedDistance()).isEqualTo(3);
-        assertThat(car.getName()).isEqualTo("car3");
+        // when & then
+        assertThatThrownBy(()->new Car(null, dummystrategy))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 null 일 수 없습니다.");
     }
+
+    @DisplayName("이름을 공백으로 둔다면 에러를 던지는지 확인한다.")
+    @Test
+    void 이름을_공백으로_둘_수_없음(){
+        // given
+        MoveStrategy dummystrategy=()->0;
+
+        // when & then
+        assertThatThrownBy(()->new Car(" ", dummystrategy))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("이름은 공백일 수 없습니다.");
+    }
+
+
 }

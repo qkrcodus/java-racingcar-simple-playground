@@ -1,10 +1,11 @@
 package racinggame.controller;
 
 import racinggame.model.RacingGame;
-import racinggame.policy.decider.ThresholdBaseMoveDecider;
-import racinggame.policy.evaluator.GreaterThanOrEqualThresholdEvaluator;
-import racinggame.policy.strategy.MoveStrategy;
-import racinggame.policy.strategy.OneStepMoveStrategy;
+import racinggame.model.car.policy.numbergenerator.ZeroToNineRandomGenerator;
+import racinggame.model.car.policy.decider.ThresholdBaseMoveDecider;
+import racinggame.model.car.policy.evaluator.GreaterThanOrEqualThresholdEvaluator;
+import racinggame.model.car.policy.strategy.MoveStrategy;
+import racinggame.model.car.policy.strategy.OneStepMoveStrategy;
 import racinggame.view.InputView;
 import racinggame.view.OutputView;
 
@@ -16,10 +17,10 @@ public class RacingGameController {
         int moveCount = InputView.readMoveCount();
 
         MoveStrategy strategy = new OneStepMoveStrategy(
-                new racinggame.policy.numbergenerator.ZeroToNineRandomGenerator(),
+                new ZeroToNineRandomGenerator(),
                 new ThresholdBaseMoveDecider(new GreaterThanOrEqualThresholdEvaluator(4)));
 
-        RacingGame game = new RacingGame(names,moveCount,strategy);
+        RacingGame game = new RacingGame(names,strategy);
 
         for (int i = 0; i < moveCount; i++) {
             game.moveOneTurn();

@@ -1,5 +1,5 @@
-import racinggame.model.Car;
-import racinggame.policy.strategy.MoveStrategy;
+import racinggame.model.car.Car;
+import racinggame.model.car.policy.strategy.MoveStrategy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racinggame.model.WinnerFinder;
@@ -15,10 +15,14 @@ public class WinnerFinderTest {
     @Test
     @DisplayName("우승자 1명일 경우 car1")
     public void singleWinner(){
+        // given
         List<Car> cars = createCarsForTest(new int[]{3,2,1},new String[]{"car1","car2","car3"});
         WinnerFinder winner=new WinnerFinder(cars,1);
+
+        // when
         winner.play();
 
+        // then
         List<String> winners = winner.getWinners();
         assertThat(winners).containsExactly("car1");
     }
@@ -26,15 +30,19 @@ public class WinnerFinderTest {
     @Test
     @DisplayName("우승자 여러명일 경우 car1 car2")
     public void multipleWinners(){
+        // given
         List<Car> cars = createCarsForTest(new int[]{3,3,1},new String[]{"car1","car2","car3"});
         WinnerFinder winner=new WinnerFinder(cars,1);
+
+        // when
         winner.play();
 
+        // then
         List<String> winners = winner.getWinners();
         assertThat(winners).containsExactly("car1", "car2");
     }
 
-    // 이름과 이동 거리를 갖는 Car 리스트 생성하기
+
     private List<Car> createCarsForTest(int[] distances,String[] names){
         List<Car> cars = new ArrayList<>();
         for (int i = 0; i < names.length; i++) {

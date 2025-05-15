@@ -1,6 +1,6 @@
-package racinggame.policy.decider;
+package racinggame.model.car.policy.decider;
 
-import racinggame.policy.evaluator.ThresholdEvaluator;
+import racinggame.model.car.policy.evaluator.ThresholdEvaluator;
 
 public class ThresholdBaseMoveDecider implements MoveDecider {
     private final ThresholdEvaluator evaluator;

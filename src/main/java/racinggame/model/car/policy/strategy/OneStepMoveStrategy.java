@@ -1,14 +1,15 @@
-package racinggame.policy.strategy;
+package racinggame.model.car.policy.strategy;
 
-import racinggame.policy.decider.MoveDecider;
+import racinggame.model.car.policy.numbergenerator.RandomGenerator;
+import racinggame.model.car.policy.decider.MoveDecider;
 
 public class OneStepMoveStrategy implements MoveStrategy {
     private static final int STEP_SIZE = 1;
 
-    private final racinggame.policy.numbergenerator.RandomGenerator randomGenerator;
+    private final RandomGenerator randomGenerator;
     private final MoveDecider moveDecider;
 
-    public OneStepMoveStrategy(racinggame.policy.numbergenerator.RandomGenerator randomGenerator, MoveDecider moveDecider) {
+    public OneStepMoveStrategy(RandomGenerator randomGenerator, MoveDecider moveDecider) {
         this.randomGenerator = randomGenerator;
         this.moveDecider = moveDecider;
     }
